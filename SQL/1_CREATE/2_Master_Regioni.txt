@@ -1,0 +1,24 @@
+
+CREATE TABLE MASTER_TABLE_REGIONI
+(
+	data DATE,
+	stato CHAR(3),
+	codice_regione NUMBER(2),
+	denominazione_regione VARCHAR2(200),
+	latitudine NUMBER,
+	longitudine NUMBER,
+	ricoverati_con_sintomi INTEGER,
+	terapia_intensiva INTEGER,
+	totale_ospedalizzati INTEGER,
+	isolamento_domiciliare INTEGER,
+	totale_positivi INTEGER,
+	variazione_totale_positivi INTEGER,
+	nuovi_positivi INTEGER,
+	dimessi_guariti INTEGER,
+	deceduti INTEGER,
+	totale_casi INTEGER,
+	tamponi INTEGER,
+	casi_testati INTEGER,
+	note_it CLOB,
+	note_en CLOB
+);

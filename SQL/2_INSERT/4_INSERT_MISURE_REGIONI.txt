@@ -1,0 +1,5 @@
+--INSERIMENTO DATI SU TABELLA NORMALIZZATA misure_regioni dalla MASTER_TABLE_REGIONI
+INSERT INTO misure_regioni (data,codice_regione,ricoverati_con_sintomi,terapia_intensiva,totale_ospedalizzati,isolamento_domiciliare,totale_positivi ,variazione_totale_positivi,nuovi_positivi,dimessi_guariti,deceduti,totale_casi,tamponi,casi_testati,note_it,note_en)(
+	SELECT data,codice_regione,ricoverati_con_sintomi,terapia_intensiva,totale_ospedalizzati,isolamento_domiciliare,totale_positivi ,variazione_totale_positivi,nuovi_positivi,dimessi_guariti,deceduti,totale_casi,tamponi,casi_testati,note_it,note_en
+	FROM master_table_regioni
+);

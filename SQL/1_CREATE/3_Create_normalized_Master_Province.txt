@@ -1,0 +1,31 @@
+
+
+CREATE TABLE regioni(
+	codice_regione NUMBER(2),
+	denominazione_regione VARCHAR2(200),
+	Stato CHAR(3)
+);
+ALTER TABLE regioni ADD CONSTRAINT PK_REGIONI primary key (codice_regione);
+
+CREATE TABLE province(
+	codice_provincia NUMBER(3),
+	denominazione_provincia VARCHAR2(200),
+	sigla_provincia CHAR(2),
+	codice_regione NUMBER(2),
+	latitudine NUMBER,
+	longitudine NUMBER
+);
+ALTER TABLE province ADD CONSTRAINT PK_PROVINCE primary key (codice_provincia);
+ALTER TABLE regioni ADD CONSTRAINT FK_PROVINCE_REGIONI foreign key (codice_regione) REFERENCES regioni(codice_regione);
+
+CREATE TABLE misure_province(
+	data date,
+	codice_provincia NUMBER(3),
+	totale_casi INTEGER, 
+	note_it CLOB,
+	note_en CLOB
+);
+ALTER TABLE misure_province ADD CONSTRAINT PK_MISURE_PROVINCE primary key (data, codice_provincia);
+ALTER TABLE misure_province ADD CONSTRAINT FK_MISURE_PROVINCIA_PROVINCIA foreign key (codice_provincia) REFERENCES province(codice_provincia);
+
+COMMIT;

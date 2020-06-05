@@ -1,0 +1,18 @@
+
+
+--INSERT SULLE TABELLE NORMALIZZATE
+
+INSERT INTO PROVINCE(codice_provincia, denominazione_provincia, sigla_provincia, codice_regione, latitudine, longitudine) (
+	select DISTINCT codice_provincia, denominazione_provincia, sigla_provincia, codice_regione, latitudine, longitudine
+	from MASTER_TABLE_PROVINCE
+);
+
+INSERT INTO regioni(codice_regione, denominazione_regione, stato) (
+    select DISTINCT codice_regione, denominazione_regione, stato
+    from master_table_province
+);
+
+INSERT INTO misure_province (codice_provincia, data, totale_casi, note_en, note_it)(
+    select codice_provincia, data, totale_casi, note_en, note_it
+    from master_table_province
+);

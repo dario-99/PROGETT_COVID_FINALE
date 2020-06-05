@@ -1,0 +1,21 @@
+--CREATE TABLE MISURE REGIONI
+CREATE TABLE misure_regioni(
+	data DATE,
+	codice_regione NUMBER(2),
+	ricoverati_con_sintomi INTEGER,
+	terapia_intensiva INTEGER,
+	totale_ospedalizzati INTEGER,
+	isolamento_domiciliare INTEGER,
+	totale_positivi INTEGER,
+	variazione_totale_positivi INTEGER,
+	nuovi_positivi INTEGER,
+	dimessi_guariti INTEGER,
+	deceduti INTEGER,
+	totale_casi INTEGER,
+	tamponi INTEGER,
+	casi_testati INTEGER,
+	note_it CLOB,
+	note_en CLOB
+);
+ALTER TABLE misure_regioni ADD CONSTRAINTS PK_MISURE_REGIONI primary key (data, codice_regione);
+ALTER TABLE misure_regioni ADD CONSTRAINTS FK_MISURE_REGIONI_REGIONI foreign key (codice_regione) REFERENCES regioni(codice_regione);

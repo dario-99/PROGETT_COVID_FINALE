@@ -1,0 +1,46 @@
+CREATE OR REPLACE TRIGGER TRIGGER_insert_master_province
+AFTER INSERT
+ON MASTER_TABLE_PROVINCE
+FOR EACH ROW
+BEGIN
+    INSERT INTO misure_province(data,codice_provincia, totale_casi, note_it, note_en) VALUES (:NEW.data,:NEW.codice_provincia, :NEW.totale_casi, :NEW.note_it, :NEW.note_en);
+END;
+
+CREATE OR REPLACE TRIGGER TRIGGER_insert_master_regioni
+AFTER INSERT
+ON MASTER_TABLE_REGIONI
+FOR EACH ROW
+BEGIN
+    INSERT INTO misure_regioni(data,
+	codice_regione,
+	ricoverati_con_sintomi,
+	terapia_intensiva,
+	totale_ospedalizzati,
+	isolamento_domiciliare,
+	totale_positivi,
+	variazione_totale_positivi,
+	nuovi_positivi,
+	dimessi_guariti,
+	deceduti,
+	totale_casi,
+	tamponi,
+	casi_testati ,
+	note_it ,
+	note_en )
+    VALUES (:NEW.data,
+	:NEW.codice_regione,
+	:NEW.ricoverati_con_sintomi,
+	:NEW.terapia_intensiva,
+	:NEW.totale_ospedalizzati,
+	:NEW.isolamento_domiciliare,
+	:NEW.totale_positivi,
+	:NEW.variazione_totale_positivi,
+	:NEW.nuovi_positivi,
+	:NEW.dimessi_guariti,
+	:NEW.deceduti,
+	:NEW.totale_casi,
+	:NEW.tamponi,
+	:NEW.casi_testati ,
+	:NEW.note_it ,
+	:NEW.note_en);
+END;

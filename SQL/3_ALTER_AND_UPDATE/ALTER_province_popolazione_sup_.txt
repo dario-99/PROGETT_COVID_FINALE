@@ -1,0 +1,2 @@
+ALTER TABLE province ADD popolazione INTEGER;
+ALTER TABLE province ADD superficie_kmq INTEGER;

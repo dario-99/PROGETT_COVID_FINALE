@@ -1,0 +1,25 @@
+--UPDATE POSTI_LETTO e POSTI_TERAPIA_INTENSIVA
+
+UPDATE regioni SET posti_letto = 1736, posti_terapia_intensiva = 66 WHERE denominazione_regione = 'P.A. Bolzano';
+UPDATE regioni SET posti_letto = 14650, posti_terapia_intensiva = 522 WHERE denominazione_regione = 'Piemonte';
+UPDATE regioni SET posti_letto = 17289, posti_terapia_intensiva = 560 WHERE denominazione_regione = 'Sicilia';
+UPDATE regioni SET posti_letto = 423, posti_terapia_intensiva = 15 WHERE denominazione_regione = 'Valle d''Aosta';
+UPDATE regioni SET posti_letto = 14970, posti_terapia_intensiva = 559 WHERE denominazione_regione = 'Emilia-Romagna';
+UPDATE regioni SET posti_letto = 5112, posti_terapia_intensiva = 188 WHERE denominazione_regione = 'Liguria';
+UPDATE regioni SET posti_letto = 1902, posti_terapia_intensiva = 64 WHERE denominazione_regione = 'Basilicata';
+UPDATE regioni SET posti_letto = 1025, posti_terapia_intensiva = 35 WHERE denominazione_regione = 'Molise';
+UPDATE regioni SET posti_letto = 19816, posti_terapia_intensiva = 648 WHERE denominazione_regione = 'Campania';
+UPDATE regioni SET posti_letto = 4021, posti_terapia_intensiva = 147 WHERE denominazione_regione = 'Friuli Venezia Giulia';
+UPDATE regioni SET posti_letto = 13917, posti_terapia_intensiva = 451 WHERE denominazione_regione = 'Puglia';
+UPDATE regioni SET posti_letto = 5554, posti_terapia_intensiva = 184 WHERE denominazione_regione = 'Sardegna';
+UPDATE regioni SET posti_letto = 18890, posti_terapia_intensiva = 704 WHERE denominazione_regione = 'Lazio';
+UPDATE regioni SET posti_letto = 32971, posti_terapia_intensiva = 1233 WHERE denominazione_regione = 'Lombardia';
+UPDATE regioni SET posti_letto = 5229, posti_terapia_intensiva = 185 WHERE denominazione_regione = 'Marche';
+UPDATE regioni SET posti_letto = 1810, posti_terapia_intensiva = 67 WHERE denominazione_regione = 'P.A. Trento';
+UPDATE regioni SET posti_letto = 3056, posti_terapia_intensiva = 107 WHERE denominazione_regione = 'Umbria';
+UPDATE regioni SET posti_letto = 16518, posti_terapia_intensiva = 591 WHERE denominazione_regione = 'Veneto';
+UPDATE regioni SET posti_letto = 4357, posti_terapia_intensiva = 158 WHERE denominazione_regione = 'Abruzzo';
+UPDATE regioni SET posti_letto = 6591, posti_terapia_intensiva = 219 WHERE denominazione_regione = 'Calabria';
+UPDATE regioni SET posti_letto = 12482, posti_terapia_intensiva = 449 WHERE denominazione_regione = 'Toscana';
+
+
