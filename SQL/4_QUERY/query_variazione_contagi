@@ -1,0 +1,5 @@
+--QUERY CHE RITORNA L' AUMENTO DEI CONTAGI TOTALE IN ITALIA PER OGNI DATA
+SELECT data, sum(nuovi_positivi)
+FROM misure_regioni
+group by data
+order by data;
