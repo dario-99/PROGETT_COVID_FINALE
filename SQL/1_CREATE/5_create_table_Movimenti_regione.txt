@@ -1,0 +1,12 @@
+CREATE TABLE movimenti_regioni(
+	codice_regione NUMBER(2),
+	data DATE,
+	variazione_svago_vendita_dettaglio NUMBER(3),
+	variazione_farmacie_Alimentari NUMBER(3),
+	variazione_parchi NUMBER(3),
+	variazione_stazioni_trasporto_pubblico NUMBER(3),
+	variazione_sedi_lavoro NUMBER(3),
+	variazione_zone_residenziali NUMBER(3)
+);
+ALTER TABLE movimenti_regioni ADD CONSTRAINT PK_MOVIMENTI_REGIONI primary key (data, codice_regione);
+ALTER TABLE movimenti_regioni ADD CONSTRAINT FK_MOVIMENTI_REGIONE_REGIONE foreign key(codice_regione) REFERENCES regioni(codice_regione);

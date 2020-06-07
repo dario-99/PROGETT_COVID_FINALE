@@ -1,0 +1,35 @@
+--Query parametrizzata per il report sui movimenti di una regione presa in INPUT
+CREATE OR REPLACE PROCEDURE report_movimenti_regione(regione_in IN regioni.denominazione_regione%TYPE)
+AS
+    found_regione INTEGER;
+    CURSOR cursore_regione IS (
+        select mov.codice_regione, mov.data, mov.variazione_svago_vendita_dettaglio, mov.variazione_farmacie_alimentari, mov.variazione_parchi, mov.variazione_stazioni_trasporto_pubblico, mov.variazione_sedi_lavoro, mov.variazione_zone_residenziali
+        from movimenti_regioni mov JOIN regioni r ON mov.codice_regione = r.codice_regione 
+        where LOWER(denominazione_regione) = LOWER(regione_in)
+        );
+    riga_movimenti movimenti_regioni%ROWTYPE;
+    regione_not_found EXCEPTION;
+BEGIN
+    --Controllo che la regione sia presente
+    select count(distinct(codice_regione)) INTO found_regione
+    from regioni
+    where LOWER(denominazione_regione) = LOWER(regione_in) AND codice_regione IN (
+        select distinct(codice_regione)
+        from movimenti_regioni
+    );
+    IF found_regione <= 0 THEN
+        RAISE regione_not_found;
+    END IF;
+    --posso stampare le regioni
+    OPEN cursore_regione;
+    dbms_output.put_line('DATI MOVIMENTI REGIONE '|| regione_in);
+    dbms_output.put_line('codice_regione  data  variazione_svago_vendita_dettaglio  variazione_farmacie_alimentari  variazione_parchi variazione_stazioni_trasporto_pubblico  variazione_sedi_lavoro  variazione_zone_residenziali');
+    LOOP 
+        FETCH cursore_regione INTO riga_movimenti;
+        EXIT WHEN cursore_regione%NOTFOUND;
+        dbms_output.put_line(riga_movimenti.codice_regione || ' | ' || riga_movimenti.data || ' | ' || riga_movimenti.variazione_svago_vendita_dettaglio || ' | ' || riga_movimenti.variazione_farmacie_alimentari|| ' | ' || riga_movimenti.variazione_parchi|| ' | ' || riga_movimenti.variazione_stazioni_trasporto_pubblico|| ' | ' || riga_movimenti.variazione_sedi_lavoro|| ' | ' || riga_movimenti.variazione_zone_residenziali );
+    END LOOP;
+    CLOSE cursore_regione;
+EXCEPTION
+    WHEN regione_not_found THEN DBMS_output.put_line('REGIONE NON PRESENTE');
+END report_movimenti_regione;
