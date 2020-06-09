@@ -1,0 +1,27 @@
+--Query parametrizzata che ritorna Il rapporto tra contagiati e densita abitativa di una determinata provincia
+CREATE OR REPLACE PROCEDURE rapporto_contagiati_densita( provincia_in IN province.denominazione_provincia%TYPE)
+AS
+    provincia_non_presente EXCEPTION;
+    found_prov INTEGER;
+    ris NUMBER(7,5);
+BEGIN
+    --Controllo che la provincia sia presente
+    SELECT count(distinct denominazione_provincia) INTO found_prov
+    FROM province
+    WHERE LOWER(denominazione_provincia) = LOWER(provincia_in);
+    IF found_prov = 0 THEN
+        RAISE provincia_non_presente;
+    END IF;
+    --CALCOLO RAPPORTO_CONTAGIATI_DENSITA
+    SELECT AVG(mis.totale_casi/p.densita_abitativa) AS rapporto_contagiati_densita INTO ris
+    FROM province p JOIN misure_province mis ON p.codice_provincia = mis.codice_provincia
+    WHERE LOWER(p.denominazione_provincia) = LOWER(provincia_in)
+    group by p.denominazione_provincia;
+    --STAMPO RISULTATO
+    dbms_output.put_line('PROVINCIA: '|| provincia_in);
+    dbms_output.put_line('RAPPORTO CONTAGIATI CON DENSITA ABITATIVA: '|| ris);
+    
+EXCEPTION
+    WHEN provincia_non_presente THEN
+        dbms_output.put_line('Provincia Non Presente');
+END rapporto_contagiati_densita;
