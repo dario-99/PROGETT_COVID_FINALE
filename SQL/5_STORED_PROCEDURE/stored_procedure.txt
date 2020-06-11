@@ -1,0 +1,32 @@
+--function che ritorna il codice della regione col massimo dei contagi dato una data
+CREATE OR REPLACE FUNCTION get_regione_max_contagi(data_oss IN misure_regioni.data%TYPE)
+RETURN misure_regioni.codice_regione%TYPE
+AS
+    cod_max misure_regioni.codice_regione%TYPE;
+BEGIN
+    select codice_regione INTO cod_max
+    from misure_regioni
+    where data=data_oss AND totale_positivi IN (
+        SELECT max(totale_positivi)
+        from misure_regioni
+        where data = data_oss
+    );
+    RETURN cod_max;
+END get_regione_max_contagi;
+
+
+--function che ritorna il codice della PROVINCIA col massimo dei contagi dato una data
+CREATE OR REPLACE FUNCTION get_provincia_max_contagi(data_oss IN misure_province.data%TYPE)
+RETURN misure_province.codice_provincia%TYPE
+AS
+    cod_max misure_province.codice_provincia%TYPE;
+BEGIN
+    select codice_provincia INTO cod_max
+    from misure_province
+    where data=data_oss AND totale_casi IN (
+        SELECT max(totale_casi)
+        from misure_province
+        where data = data_oss
+    );
+    RETURN cod_max;
+END get_provincia_max_contagi;
