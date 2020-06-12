@@ -22,3 +22,4 @@ CREATE TABLE MASTER_TABLE_REGIONI
 	note_it CLOB,
 	note_en CLOB
 );
+ALTER TABLE master_table_regioni ADD CONSTRAINT PK_MASTER_REGIONI primary key (data, codice_regione);

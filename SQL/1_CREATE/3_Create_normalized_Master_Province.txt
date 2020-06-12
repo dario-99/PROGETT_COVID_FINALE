@@ -16,7 +16,7 @@ CREATE TABLE province(
 	longitudine NUMBER
 );
 ALTER TABLE province ADD CONSTRAINT PK_PROVINCE primary key (codice_provincia);
-ALTER TABLE regioni ADD CONSTRAINT FK_PROVINCE_REGIONI foreign key (codice_regione) REFERENCES regioni(codice_regione);
+ALTER TABLE province ADD CONSTRAINT FK_PROVINCE_REGIONI foreign key (codice_regione) REFERENCES regioni(codice_regione);
 
 CREATE TABLE misure_province(
 	data date,

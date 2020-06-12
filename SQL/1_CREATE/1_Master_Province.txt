@@ -15,4 +15,4 @@ CREATE TABLE MASTER_TABLE_PROVINCE
 	note_en CLOB,
     CONSTRAINT PK_COVID primary key(data,codice_provincia)
 );
-
+ALTER TABLE master_table_province ADD CONSTRAINT PK_MASTER_PROVINCE primary key (data, codice_provincia);
